@@ -1,20 +1,20 @@
 import { useState } from "react";
 
 import styles from "./AddTodo.module.css";
+import Button from "../../UI/Button.js";
 
 const AddTodo = (props) => {
-  const [todoTitle, setTodoTitle] = useState("");
+  const [todoText, setTodoText] = useState("");
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    //TODO ADD EVENT.
-    console.log(todoTitle);
-    props.onAddTodo(todoTitle);
-    setTodoTitle("");
+    const todo = { text: todoText, id: Math.random() };
+    props.onAddTodo(todo);
+    setTodoText("");
   };
 
   const todoInputChangeHandler = (event) => {
-    setTodoTitle(event.target.value);
+    setTodoText(event.target.value);
   };
 
   return (
@@ -24,11 +24,11 @@ const AddTodo = (props) => {
           <label>To Do</label>
           <input
             type="text"
-            value={todoTitle}
+            value={todoText}
             placeholder={"Type here..."}
             onChange={todoInputChangeHandler}
           />
-          <button type="submit">+</button>
+          <Button addButton={true} type="submit" text="+" />
         </div>
       </form>
     </div>

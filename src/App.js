@@ -19,11 +19,26 @@ function App() {
     });
   };
 
+  const onDeleteItem = (todoId) => {
+    setTodos((prevState) => {
+      return prevState.filter((todo) => todo.id !== todoId);
+    });
+  };
+  let contentTodo = (
+    <p style={{ textAlign: "center" }}> No Todo found. Maybe add one ?</p>
+  );
+
+  if (todos.length > 0) {
+    contentTodo = <TodoList onDeleteItem={onDeleteItem} data={todos} />;
+  }
+
   return (
-    <section className={styles["main-content"]}>
-      <AddTodo onAddTodo={addTodoHandler} />
-      <TodoList data={todos} />
-    </section>
+    <div>
+      <section id="Todo Form" className={styles["form"]}>
+        <AddTodo onAddTodo={addTodoHandler} />
+      </section>
+      <section className={styles["content"]}>{contentTodo}</section>
+    </div>
   );
 }
 
