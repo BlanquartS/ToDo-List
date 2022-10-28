@@ -1,14 +1,19 @@
 import styles from "./TodoList.module.css";
-import TodoItem from "./TodoItem.js";
+import Item from "./Item.js";
 
 const TodoList = (props) => {
   return (
     <section>
-      <ul className={styles["todo-list"]}>
+      <ul className={styles["list"]}>
         {props.data.map((todo) => (
-          <TodoItem id={todo.id} key={todo.id} onDelete={props.onDeleteItem}>
+          <Item
+            id={todo.id}
+            key={todo.id}
+            doneTodoList={props.doneTodoList}
+            onDelete={props.onDeleteItem}
+          >
             {todo.text}
-          </TodoItem>
+          </Item>
         ))}
       </ul>
     </section>

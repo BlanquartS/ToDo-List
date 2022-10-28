@@ -8,7 +8,7 @@ const Button = (props) => {
           {props.text}
         </button>
       ) : (
-        <button>a</button>
+        <button>{props.icon}</button>
       )}
     </div>
   );
